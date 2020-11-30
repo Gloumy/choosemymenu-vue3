@@ -25,25 +25,7 @@
         <div class="grid-container grid-container-padded">
           <div class="grid-x grid-margin-x">
             <div class="cell small-12">
-              <div
-                class="small-12 cell list_item"
-                v-for="index in 7"
-                :key="index"
-              >
-                <div class="grid-x grid-margin-x align-middle">
-                  <div class="cell small-2">
-                    <img src="./assets/img/cadenas-open.svg" alt="cadenas" />
-                  </div>
-                  <div class="cell small-3 jour">MARDI</div>
-                  <div class="cell small-5 titre_recette">
-                    Oeufs à la tomate et chorizo
-                  </div>
-                  <div
-                    class="cell small-2 photo_recette"
-                    style="background-image: url(./assets/img/pizza.jpg)"
-                  ></div>
-                </div>
-              </div>
+              <meal-card v-for="day in days" :key="day" :day="day"></meal-card>
             </div>
           </div>
         </div>
@@ -67,11 +49,24 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import MealCard from "./components/Meals/MealCard.vue";
 
 @Options({
-  components: {},
+  components: {
+    MealCard,
+  },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private days: string[] = [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Dimanche",
+  ];
+}
 </script>
 
 <style lang="scss">

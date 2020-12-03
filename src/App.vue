@@ -50,6 +50,8 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import MealCard from "./components/Meals/MealCard.vue";
+import MealApi from "@/api/MealsApi";
+import { Meal } from "@/models/Meal";
 
 @Options({
   components: {
@@ -66,6 +68,15 @@ export default class App extends Vue {
     "Samedi",
     "Dimanche",
   ];
+
+  private meals: Meal[] = [];
+
+  mounted() {
+    MealApi.getMeals().then((resp) => {
+      this.meals = resp;
+      console.log(this.meals);
+    });
+  }
 }
 </script>
 
